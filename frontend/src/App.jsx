@@ -1,8 +1,16 @@
-import PredictionForm from "./components/PredictionForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
-    <PredictionForm />
+    <BrowserRouter>
+      <Routes>
+
+        <Route path="/" element={<Dashboard />} />
+
+      </Routes>
+    </BrowserRouter>
   );
 }
 
