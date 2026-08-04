@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "./PredictionForm.css";
 
 function PredictionForm() {
   const [formData, setFormData] = useState({
@@ -36,153 +37,185 @@ function PredictionForm() {
 
       setResult(response.data);
     } catch (error) {
-      alert("Prediction Failed!");
       console.error(error);
+      alert("Prediction Failed! Check Backend.");
     }
 
     setLoading(false);
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "700px",
-        margin: "40px auto",
-        padding: "30px",
-        borderRadius: "15px",
-        boxShadow: "0 0 15px rgba(0,0,0,0.2)",
-        background: "#fff",
-      }}
-    >
-      <h2 style={{ textAlign: "center" }}>
-        Smart Urban Resource Allocation
-      </h2>
+    <div className="prediction-card">
 
-      <form onSubmit={handleSubmit}>
+      <h2>🤖 AI Overflow Prediction</h2>
 
-        <label>Area</label>
-        <select
-          name="area"
-          value={formData.area}
-          onChange={handleChange}
-        >
-          {Array.from({ length: 20 }, (_, i) => (
-            <option key={i + 1} value={i}>
-              Ward-{i + 1}
-            </option>
-          ))}
-        </select>
+      <p>
+        Enter ward details to predict whether the garbage bin
+        is likely to overflow.
+      </p>
 
-        <br /><br />
+      <form
+        onSubmit={handleSubmit}
+        className="prediction-form"
+      >
 
-        <label>Population</label>
-        <input
-          type="number"
-          name="population"
-          value={formData.population}
-          onChange={handleChange}
-          required
-        />
+        <div className="input-group">
+          <label>Ward</label>
 
-        <br /><br />
+          <select
+            name="area"
+            value={formData.area}
+            onChange={handleChange}
+          >
+            {Array.from({ length: 20 }, (_, i) => (
+              <option
+                key={i}
+                value={i}
+              >
+                Ward {i + 1}
+              </option>
+            ))}
+          </select>
+        </div>
 
-        <label>Temperature</label>
-        <input
-          type="number"
-          name="temperature"
-          value={formData.temperature}
-          onChange={handleChange}
-          required
-        />
+        <div className="input-group">
+          <label>Population</label>
 
-        <br /><br />
+          <input
+            type="number"
+            name="population"
+            value={formData.population}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Rainfall</label>
-        <input
-          type="number"
-          name="rainfall"
-          value={formData.rainfall}
-          onChange={handleChange}
-          required
-        />
+        <div className="input-group">
+          <label>Temperature (°C)</label>
 
-        <br /><br />
+          <input
+            type="number"
+            name="temperature"
+            value={formData.temperature}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Holiday</label>
-        <select
-          name="holiday"
-          value={formData.holiday}
-          onChange={handleChange}
-        >
-          <option value={0}>No</option>
-          <option value={1}>Yes</option>
-        </select>
+        <div className="input-group">
+          <label>Rainfall (mm)</label>
 
-        <br /><br />
+          <input
+            type="number"
+            name="rainfall"
+            value={formData.rainfall}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
-        <label>Last Collection Hours</label>
-        <input
-          type="number"
-          name="last_collection_hours"
-          value={formData.last_collection_hours}
-          onChange={handleChange}
-          required
-        />
+        <div className="input-group">
+          <label>Holiday</label>
 
-        <br /><br />
+          <select
+            name="holiday"
+            value={formData.holiday}
+            onChange={handleChange}
+          >
+            <option value={0}>No</option>
+            <option value={1}>Yes</option>
+          </select>
+        </div>
 
-        <label>Waste Generated (kg)</label>
-        <input
-          type="number"
-          name="waste_generated_kg"
-          value={formData.waste_generated_kg}
-          onChange={handleChange}
-          required
-        />
+        <div className="input-group">
+          <label>Last Collection (Hours)</label>
 
-        <br /><br />
+          <input
+            type="number"
+            name="last_collection_hours"
+            value={formData.last_collection_hours}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="input-group full-width">
+          <label>Waste Generated (kg)</label>
+
+          <input
+            type="number"
+            name="waste_generated_kg"
+            value={formData.waste_generated_kg}
+            onChange={handleChange}
+            required
+          />
+        </div>
 
         <button
           type="submit"
-          style={{
-            width: "100%",
-            padding: "12px",
-            background: "#2563eb",
-            color: "white",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer",
-            fontSize: "16px",
-          }}
+          className="predict-btn"
         >
-          {loading ? "Predicting..." : "Predict Overflow"}
+          {loading ? "Predicting..." : "🚀 Predict Overflow"}
         </button>
 
       </form>
 
       {result && (
+
         <div
-          style={{
-            marginTop: "30px",
-            padding: "20px",
-            borderRadius: "10px",
-            background:
-              result.prediction === 1
-                ? "#ffe5e5"
-                : "#e7ffe7",
-          }}
+          className={
+            result.prediction === 1
+              ? "result danger"
+              : "result safe"
+          }
         >
+
           <h3>Prediction Result</h3>
 
-          <h2>
+          <h1>
             {result.prediction === 1
               ? "🔴 Overflow Expected"
               : "🟢 No Overflow"}
-          </h2>
+          </h1>
 
-          <p>Status: {result.status}</p>
+          <p>
+            <strong>Status:</strong> {result.status}
+          </p>
+
+          <hr />
+
+          <p>
+            <strong>Priority:</strong>{" "}
+            {result.prediction === 1
+              ? "High"
+              : "Low"}
+          </p>
+
+          <p>
+            <strong>Suggested Action:</strong>{" "}
+            {result.prediction === 1
+              ? "Dispatch Collection Vehicle Immediately"
+              : "No Immediate Action Required"}
+          </p>
+
+          <p>
+            <strong>Estimated Fuel Saving:</strong>{" "}
+            {result.prediction === 1
+              ? "3.8 Litres"
+              : "0 Litres"}
+          </p>
+
+          <p>
+            <strong>Estimated Cost Saving:</strong>{" "}
+            {result.prediction === 1
+              ? "₹450"
+              : "₹0"}
+          </p>
+
         </div>
+
       )}
+
     </div>
   );
 }

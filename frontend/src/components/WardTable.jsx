@@ -1,103 +1,144 @@
+import "./WardTable.css";
+
 function WardTable() {
 
-const wards=[
+  const wards = [
 
-{
-ward:"Ward-1",
-population:8500,
-waste:"420 kg",
-overflow:"Yes"
-},
+    {
+      ward: "Ward-1",
+      population: 8500,
+      waste: "420 kg",
+      overflow: "Yes",
+      priority: "High"
+    },
 
-{
-ward:"Ward-2",
-population:5200,
-waste:"180 kg",
-overflow:"No"
-},
+    {
+      ward: "Ward-2",
+      population: 5200,
+      waste: "180 kg",
+      overflow: "No",
+      priority: "Low"
+    },
 
-{
-ward:"Ward-3",
-population:7300,
-waste:"390 kg",
-overflow:"Yes"
-},
+    {
+      ward: "Ward-3",
+      population: 7300,
+      waste: "390 kg",
+      overflow: "Yes",
+      priority: "High"
+    },
 
-{
-ward:"Ward-4",
-population:4100,
-waste:"150 kg",
-overflow:"No"
-},
+    {
+      ward: "Ward-4",
+      population: 4100,
+      waste: "150 kg",
+      overflow: "No",
+      priority: "Low"
+    },
 
-];
+    {
+      ward: "Ward-5",
+      population: 9600,
+      waste: "470 kg",
+      overflow: "Yes",
+      priority: "Critical"
+    }
 
-return(
+  ];
 
-<div
-style={{
-background:"white",
-padding:"20px",
-marginTop:"30px",
-borderRadius:"12px",
-boxShadow:"0 0 10px rgba(0,0,0,.15)"
-}}
->
+  return (
 
-<h2>Ward Status</h2>
+    <div className="table-card">
 
-<table
-style={{
-width:"100%",
-borderCollapse:"collapse"
-}}
->
+      <div className="table-header">
 
-<thead>
+        <h2>📍 Ward Monitoring Dashboard</h2>
 
-<tr>
+        <button>Export Report</button>
 
-<th>Ward</th>
+      </div>
 
-<th>Population</th>
+      <table>
 
-<th>Waste</th>
+        <thead>
 
-<th>Status</th>
+          <tr>
 
-</tr>
+            <th>Ward</th>
 
-</thead>
+            <th>Population</th>
 
-<tbody>
+            <th>Waste</th>
 
-{
+            <th>Overflow</th>
 
-wards.map((item,index)=>(
+            <th>Priority</th>
 
-<tr key={index}>
+          </tr>
 
-<td>{item.ward}</td>
+        </thead>
 
-<td>{item.population}</td>
+        <tbody>
 
-<td>{item.waste}</td>
+          {
 
-<td>{item.overflow}</td>
+            wards.map((item, index) => (
 
-</tr>
+              <tr key={index}>
 
-))
+                <td>{item.ward}</td>
 
-}
+                <td>{item.population}</td>
 
-</tbody>
+                <td>{item.waste}</td>
 
-</table>
+                <td>
 
-</div>
+                  <span
+                    className={
+                      item.overflow === "Yes"
+                        ? "badge danger"
+                        : "badge safe"
+                    }
+                  >
 
-)
+                    {item.overflow}
+
+                  </span>
+
+                </td>
+
+                <td>
+
+                  <span
+                    className={
+                      item.priority === "Critical"
+                        ? "priority critical"
+                        : item.priority === "High"
+                        ? "priority high"
+                        : "priority low"
+                    }
+                  >
+
+                    {item.priority}
+
+                  </span>
+
+                </td>
+
+              </tr>
+
+            ))
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  );
 
 }
 

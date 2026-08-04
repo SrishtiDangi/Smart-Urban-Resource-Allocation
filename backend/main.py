@@ -53,3 +53,66 @@ def predict_overflow(request: PredictionRequest):
         "prediction": int(result),
         "status": "Overflow Expected" if result == 1 else "No Overflow"
     }
+@app.get("/waste-trend")
+def waste_trend():
+
+    return {
+        "days": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+        ],
+        "waste": [
+            220,
+            250,
+            240,
+            280,
+            310,
+            290,
+            330
+        ]
+    }
+
+
+@app.get("/overflow-summary")
+def overflow_summary():
+
+    return {
+        "overflow": 26,
+        "normal": 124
+    }
+
+
+@app.get("/wards")
+def wards():
+
+    return [
+        {
+            "ward": "Ward-1",
+            "population": 8500,
+            "waste": "420 kg",
+            "overflow": "Yes"
+        },
+        {
+            "ward": "Ward-2",
+            "population": 5300,
+            "waste": "210 kg",
+            "overflow": "No"
+        },
+        {
+            "ward": "Ward-3",
+            "population": 7200,
+            "waste": "390 kg",
+            "overflow": "Yes"
+        },
+        {
+            "ward": "Ward-4",
+            "population": 4100,
+            "waste": "180 kg",
+            "overflow": "No"
+        }
+    ]

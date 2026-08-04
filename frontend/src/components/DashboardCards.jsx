@@ -1,105 +1,137 @@
 import { useEffect, useState } from "react";
 import { getDashboardData } from "../services/api";
+import "./DashboardCards.css";
+
 function DashboardCards() {
-    const [dashboardData, setDashboardData] = useState(null);
-    useEffect(() => {
 
-        async function fetchDashboard() {
+  const [dashboardData, setDashboardData] = useState(null);
 
-            try {
+  useEffect(() => {
 
-                const response = await getDashboardData();
+    async function fetchDashboard() {
 
-                setDashboardData(response.data);
+      try {
 
-            }
+        const response = await getDashboardData();
 
-            catch (error) {
+        setDashboardData(response.data);
 
-                console.log(error);
+      }
 
-            }
+      catch (error) {
 
-        }
+        console.log(error);
 
-        fetchDashboard();
-
-    }, []);
-    if (!dashboardData) {
-
-        return <h2>Loading...</h2>;
+      }
 
     }
 
-    const cards = [
+    fetchDashboard();
 
-        {
+  }, []);
 
-            title: "Total Bins",
+  if (!dashboardData) {
 
-            value: dashboardData.total_bins
+    return <h2>Loading Dashboard...</h2>;
 
-        },
+  }
 
-        {
+  const cards = [
 
-            title: "Overflow Bins",
+    {
+      title: "Total Bins",
+      value: dashboardData.total_bins,
+      icon: "🗑️",
+      color: "#2563eb",
+      trend: "+8%"
+    },
 
-            value: dashboardData.overflow_bins
+    {
+      title: "Overflow Bins",
+      value: dashboardData.overflow_bins,
+      icon: "🚨",
+      color: "#ef4444",
+      trend: "-12%"
+    },
 
-        },
+    {
+      title: "Fuel Saved",
+      value: dashboardData.fuel_saved + " L",
+      icon: "⛽",
+      color: "#22c55e",
+      trend: "+18%"
+    },
 
-        {
+    {
+      title: "Money Saved",
+      value: "₹" + dashboardData.money_saved,
+      icon: "💰",
+      color: "#f59e0b",
+      trend: "+25%"
+    }
 
-            title: "Fuel Saved",
+  ];
 
-            value: dashboardData.fuel_saved + " L"
+  return (
 
-        },
+    <div className="cards-grid">
 
-        {
+      {
 
-            title: "Money Saved",
+        cards.map((card,index)=>(
 
-            value: "₹" + dashboardData.money_saved
-
-        }
-
-    ];
-
-    return (
-
-        <div
+          <div
+            key={index}
+            className="dashboard-card"
             style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(4,1fr)",
-                gap: "20px",
-                marginBottom: "30px"
+              borderTop:`5px solid ${card.color}`
             }}
-        >
+          >
 
-            {
-                cards.map((card, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            background: "#fff",
-                            padding: "25px",
-                            borderRadius: "12px",
-                            boxShadow: "0 0 10px rgba(0,0,0,.15)"
-                        }}
-                    >
-                        <h3>{card.title}</h3>
+            <div className="card-top">
 
-                        <h1>{card.value}</h1>
+              <div>
 
-                    </div>
-                ))
-            }
+                <h4>{card.title}</h4>
 
-        </div>
+                <h2>{card.value}</h2>
 
-    )
+              </div>
+
+              <div
+                className="card-icon"
+                style={{
+                  background:card.color
+                }}
+              >
+
+                {card.icon}
+
+              </div>
+
+            </div>
+
+            <div className="card-bottom">
+
+              <span className="trend">
+
+                {card.trend}
+
+              </span>
+
+              <small>vs last week</small>
+
+            </div>
+
+          </div>
+
+        ))
+
+      }
+
+    </div>
+
+  );
 
 }
 
