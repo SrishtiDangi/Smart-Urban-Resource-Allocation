@@ -1,43 +1,49 @@
 import "./Navbar.css";
 
 function Navbar() {
-  return (
-    <header className="navbar">
+    return (
+        <header className="navbar">
 
-      <div className="navbar-left">
-        <div className="logo">
-          🏙
-        </div>
+            <div className="navbar-left">
 
-        <div>
-          <h2>Smart Urban Resource Allocation</h2>
-          <p>AI Powered Smart City Dashboard</p>
-        </div>
-      </div>
+                <div className="logo-box">
+                    🏙️
+                </div>
 
-      <div className="navbar-right">
+                <div className="title-section">
+                    <h2>Smart Urban Resource Allocation Platform</h2>
+                    <p>AI Powered Smart City Management Dashboard</p>
+                </div>
 
-        <div className="status">
-          <span className="status-dot"></span>
-          System Online
-        </div>
+            </div>
 
-        <div className="profile">
-          <img
-            src="https://ui-avatars.com/api/?name=Admin&background=2563eb&color=fff"
-            alt="Admin"
-          />
+            <div className="navbar-right">
 
-          <div>
-            <h4>City Admin</h4>
-            <p>Municipal Dashboard</p>
-          </div>
-        </div>
+                <div className="system-status">
 
-      </div>
+                    <span className="status-dot"></span>
 
-    </header>
-  );
+                    <span>System Online</span>
+
+                </div>
+
+                <div className="profile">
+
+                    <div className="avatar">
+                        CD
+                    </div>
+
+                    <div className="profile-info">
+                        <h4>City Administrator</h4>
+                        <p>Municipal Dashboard</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+    );
 }
 
 export default Navbar;

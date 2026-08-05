@@ -1,0 +1,106 @@
+/* ===========================
+   Dashboard
+=========================== */
+
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+}
+
+/* ===========================
+   Main Layout
+=========================== */
+
+.dashboard-body {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* ===========================
+   Content Area
+=========================== */
+
+.dashboard-content {
+  flex: 1;
+  padding: 30px;
+  overflow-x: hidden;
+  max-width: calc(100vw - 260px);
+}
+
+/* ===========================
+   Charts
+=========================== */
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  margin: 30px 0;
+  align-items: stretch;
+}
+
+.chart-card,
+.pie-card {
+  background: rgba(255,255,255,.92);
+  border-radius: 22px;
+  padding: 25px;
+  box-shadow: 0 12px 35px rgba(15,23,42,.08);
+  border: 1px solid #e5e7eb;
+}
+
+/* Chart fills card */
+
+.chart-card{
+  min-height:520px;
+}
+
+.pie-card{
+  min-height:520px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* ===========================
+   Sections
+=========================== */
+
+.dashboard-content > *{
+  margin-bottom:30px;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width:1100px){
+
+  .charts-row{
+    grid-template-columns:1fr;
+  }
+
+  .dashboard-content{
+    max-width:100%;
+  }
+
+}
+
+@media (max-width:900px){
+
+  .dashboard-body{
+    flex-direction:column;
+  }
+
+  .dashboard-content{
+    padding:20px;
+  }
+
+}
+
+@media (max-width:600px){
+
+  .dashboard-content{
+    padding:15px;
+  }
+
+}

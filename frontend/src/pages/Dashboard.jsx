@@ -5,36 +5,43 @@ import WasteChart from "../components/WasteChart";
 import OverflowPieChart from "../components/OverflowPieChart";
 import WardTable from "../components/WardTable";
 import PredictionForm from "../components/PredictionForm";
+
+import "./Dashboard.css";
+
 function Dashboard() {
   return (
-    <div>
+    <div className="dashboard">
 
-      <Navbar/>
+      <Navbar />
 
-      <div
-      style={{
-        display:"flex"
-      }}
-      >
+      <div className="dashboard-body">
 
-        <Sidebar/>
+        <Sidebar />
 
-        <div
-        style={{
-          flex:1,
-          padding:"30px",
-          background:"#f4f6f9",
-          minHeight:"100vh"
-        }}
-        >
+        <main className="dashboard-content">
 
-          <DashboardCards/>
-          <WasteChart/>
-          <OverflowPieChart/>
-          <WardTable/>
-          <PredictionForm/>
+          <DashboardCards />
 
-        </div>
+          {/* Charts Row */}
+          <div className="charts-row">
+
+            <div className="chart-card">
+              <WasteChart />
+            </div>
+
+            <div className="pie-card">
+              <OverflowPieChart />
+            </div>
+
+          </div>
+
+          {/* Table */}
+          <WardTable />
+
+          {/* Prediction */}
+          <PredictionForm />
+
+        </main>
 
       </div>
 

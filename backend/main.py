@@ -2,6 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from schemas.prediction import PredictionRequest
 from services.model_service import predict
+from services.economics import calculate_savings
+from services.priority import get_priority
+from services.recommendation import recommend
 app = FastAPI(
     title="Smart Urban Resource Allocation API",
     version="1.0"
@@ -38,6 +41,7 @@ def dashboard():
 def predict_overflow(request: PredictionRequest):
 
     data = {
+
         "area": request.area,
         "population": request.population,
         "temperature": request.temperature,
@@ -45,13 +49,38 @@ def predict_overflow(request: PredictionRequest):
         "holiday": request.holiday,
         "last_collection_hours": request.last_collection_hours,
         "waste_generated_kg": request.waste_generated_kg,
+
     }
 
     result = predict(data)
 
+    prediction = result["prediction"]
+
+    confidence = result["confidence"]
+
+    priority = get_priority(confidence)
+
+    recommendation = recommend(priority)
+
+    economics = calculate_savings(prediction)
+
     return {
-        "prediction": int(result),
-        "status": "Overflow Expected" if result == 1 else "No Overflow"
+
+        "prediction": prediction,
+
+        "status":
+        "Overflow Expected"
+        if prediction == 1
+        else "No Overflow",
+
+        "confidence": confidence,
+
+        "priority": priority,
+
+        "recommended_action": recommendation,
+
+        **economics
+
     }
 @app.get("/waste-trend")
 def waste_trend():

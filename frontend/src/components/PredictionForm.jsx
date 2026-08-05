@@ -170,47 +170,75 @@ function PredictionForm() {
           }
         >
 
-          <h3>Prediction Result</h3>
+          <h2>
 
-          <h1>
             {result.prediction === 1
               ? "🔴 Overflow Expected"
               : "🟢 No Overflow"}
-          </h1>
 
-          <p>
-            <strong>Status:</strong> {result.status}
-          </p>
+          </h2>
 
           <hr />
 
-          <p>
-            <strong>Priority:</strong>{" "}
-            {result.prediction === 1
-              ? "High"
-              : "Low"}
-          </p>
+          <div className="result-grid">
 
-          <p>
-            <strong>Suggested Action:</strong>{" "}
-            {result.prediction === 1
-              ? "Dispatch Collection Vehicle Immediately"
-              : "No Immediate Action Required"}
-          </p>
+            <div className="result-item">
 
-          <p>
-            <strong>Estimated Fuel Saving:</strong>{" "}
-            {result.prediction === 1
-              ? "3.8 Litres"
-              : "0 Litres"}
-          </p>
+              <h4>Status</h4>
 
-          <p>
-            <strong>Estimated Cost Saving:</strong>{" "}
-            {result.prediction === 1
-              ? "₹450"
-              : "₹0"}
-          </p>
+              <p>{result.status}</p>
+
+            </div>
+
+            <div className="result-item">
+
+              <h4>Confidence</h4>
+
+              <p>{result.confidence}%</p>
+
+            </div>
+
+            <div className="result-item">
+
+              <h4>Priority</h4>
+
+              <p>{result.priority}</p>
+
+            </div>
+
+            <div className="result-item">
+
+              <h4>Recommended Action</h4>
+
+              <p>{result.recommended_action}</p>
+
+            </div>
+
+            <div className="result-item">
+
+              <h4>Fuel Saved</h4>
+
+              <p>{result.fuel_saved} L</p>
+
+            </div>
+
+            <div className="result-item">
+
+              <h4>Money Saved</h4>
+
+              <p>₹ {result.money_saved}</p>
+
+            </div>
+
+            <div className="result-item">
+
+              <h4>CO₂ Reduced</h4>
+
+              <p>{result.co2_saved} kg</p>
+
+            </div>
+
+          </div>
 
         </div>
 

@@ -30,8 +30,8 @@ function WasteChart() {
       try {
         const response = await getWasteTrend();
         setChartData(response.data);
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.log(err);
       }
     }
 
@@ -39,7 +39,11 @@ function WasteChart() {
   }, []);
 
   if (!chartData) {
-    return <h3>Loading Chart...</h3>;
+    return (
+      <div className="chart-loading">
+        Loading Waste Analytics...
+      </div>
+    );
   }
 
   const data = {
@@ -51,18 +55,11 @@ function WasteChart() {
 
         data: chartData.waste,
 
-        backgroundColor: [
-          "#3B82F6",
-          "#60A5FA",
-          "#2563EB",
-          "#1D4ED8",
-          "#0EA5E9",
-          "#38BDF8",
-          "#2563EB",
-        ],
+        backgroundColor: "#2563eb",
 
         borderRadius: 10,
-        borderSkipped: false,
+
+        maxBarThickness: 40,
       },
     ],
   };
@@ -78,18 +75,11 @@ function WasteChart() {
       },
 
       title: {
-        display: true,
-        text: "Weekly Waste Collection",
-        color: "#1E293B",
-
-        font: {
-          size: 20,
-          weight: "bold",
-        },
+        display: false,
       },
 
       tooltip: {
-        backgroundColor: "#1E293B",
+        backgroundColor: "#1e293b",
       },
     },
 
@@ -100,34 +90,33 @@ function WasteChart() {
         },
 
         ticks: {
-          color: "#475569",
+          color: "#64748b",
         },
       },
 
       y: {
         beginAtZero: true,
 
-        grid: {
-          color: "#E2E8F0",
+        ticks: {
+          color: "#64748b",
         },
 
-        ticks: {
-          color: "#475569",
+        grid: {
+          color: "#e2e8f0",
         },
       },
     },
   };
 
   return (
-    <div className="chart-card">
-
+    <>
       <div className="chart-header">
 
         <div>
 
           <h2>📊 Waste Analytics</h2>
 
-          <p>Daily waste collected across all wards</p>
+          <p>Weekly Waste Collection</p>
 
         </div>
 
@@ -136,10 +125,14 @@ function WasteChart() {
       </div>
 
       <div className="chart-container">
-        <Bar data={data} options={options} />
-      </div>
 
-    </div>
+        <Bar
+          data={data}
+          options={options}
+        />
+
+      </div>
+    </>
   );
 }
 
