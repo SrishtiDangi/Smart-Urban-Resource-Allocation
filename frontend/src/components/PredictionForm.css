@@ -21,7 +21,7 @@
 
     margin: 40px auto;
     margin-top: 35 px;
-    margin-left :0;
+    margin-left: 0;
     margin-right: 0;
     margin-bottom: 20px;
     padding: 40px;
@@ -219,27 +219,34 @@
 
 .result {
 
-    margin-top: 40px;
+    width: 100%;
 
-    padding: 30px;
+    max-width: 100%;
 
-    border-radius: 22px;
+    overflow: hidden;
 
+    padding: 25px;
 }
 
 .safe {
 
-    background: linear-gradient(135deg,
-            #ecfdf5,
-            #dcfce7);
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-left: 6px solid #22c55e;
+
+    box-shadow: 0 8px 24px rgba(15, 23, 42, .08);
 
 }
 
 .danger {
 
-    background: linear-gradient(135deg,
-            #fef2f2,
-            #fee2e2);
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-left: 6px solid #ef4444;
 
 }
 
@@ -249,11 +256,21 @@
 
 .result h2 {
 
-    text-align: center;
-
     font-size: 34px;
 
-    margin-bottom: 10px;
+    font-weight: 700;
+
+    color: #0f172a;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
 
 }
 
@@ -274,60 +291,50 @@
 .result-grid {
 
     display: grid;
+    width: 100%;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 24px;
+    gap: 20px;
+    margin-top: 25px;
 
 }
 
 .result-item {
 
-    background: rgba(255, 255, 255, .82);
+    background: #ffffff;
 
-    backdrop-filter: blur(12px);
+    border: 1px solid #e5e7eb;
 
-    border: 1px solid rgba(255, 255, 255, .45);
+    border-radius: 16px;
 
-    border-radius: 18px;
+    padding: 20px;
 
-    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
 
-    min-height: 180px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
-
-    transition: .35s;
-
-    box-shadow:
-        0 10px 25px rgba(15, 23, 42, .06);
+    transition: .3s;
 
 }
 
 .result-item:hover {
 
-    transform: translateY(-8px);
+    transform: translateY(-4px);
 
-    box-shadow:
-        0 20px 35px rgba(15, 23, 42, .12);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, .10);
 
 }
 
 .result-item h4 {
 
-    font-size: 15px;
+    font-size: 14px;
+
+    font-weight: 600;
 
     color: #64748b;
 
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+
+    text-transform: uppercase;
 
     letter-spacing: .5px;
 
@@ -335,15 +342,13 @@
 
 .result-item p {
 
-    font-size: 22px;
+    font-size: 24px;
 
     font-weight: 700;
 
     color: #0f172a;
 
-    line-height: 1.5;
-
-    word-break: break-word;
+    line-height: 1.3;
 
 }
 
