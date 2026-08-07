@@ -1,53 +1,39 @@
+import { useState } from "react";
+
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import WardMap from "../components/WardMap";
+import TruckRoute from "../components/TruckRoute";
 
 import "./WardMonitoring.css";
 
 function WardMonitoring() {
 
-    const wards = [
+    const [selectedWard, setSelectedWard] = useState({
 
-        {
-            ward: "Ward-1",
-            population: 8500,
-            fill: "92%",
-            status: "Overflow Risk",
-            priority: "High"
-        },
+        id: 1,
 
-        {
-            ward: "Ward-2",
-            population: 5200,
-            fill: "38%",
-            status: "Normal",
-            priority: "Low"
-        },
+        name: "Ward-1",
 
-        {
-            ward: "Ward-3",
-            population: 7600,
-            fill: "84%",
-            status: "Overflow Risk",
-            priority: "High"
-        },
+        population: 8500,
 
-        {
-            ward: "Ward-4",
-            population: 4200,
-            fill: "29%",
-            status: "Normal",
-            priority: "Low"
-        },
+        fill: 92,
 
-        {
-            ward: "Ward-5",
-            population: 9600,
-            fill: "98%",
-            status: "Critical",
-            priority: "Critical"
-        }
+        status: "Critical",
 
-    ];
+        waste: "420 kg",
+
+        distance: 8.4,
+
+        eta: 8,
+
+        fuelSaved: 14,
+
+        costSaved: 1850,
+
+        truck: "T-04"
+
+    });
 
     return (
 
@@ -61,103 +47,220 @@ function WardMonitoring() {
 
                 <main className="ward-content">
 
+                    {/* PAGE HEADER */}
+
                     <div className="page-header">
 
-                        <h1>🗺️ Ward Monitoring</h1>
+                        <h1>🗺️ Ward Monitoring Center</h1>
 
                         <p>
-                            Monitor real-time waste level and overflow status across all wards.
+
+                            Monitor live waste collection, overflow risk and AI-powered
+                            route optimization across all city wards.
+
                         </p>
 
                     </div>
 
+                    {/* SUMMARY */}
+
                     <div className="ward-summary">
 
                         <div className="summary-card">
-                            <h2>20</h2>
+
+                            <h2>16</h2>
+
                             <p>Total Wards</p>
+
                         </div>
 
                         <div className="summary-card">
-                            <h2>5</h2>
-                            <p>Overflow Risk</p>
+
+                            <h2>4</h2>
+
+                            <p>Critical</p>
+
                         </div>
 
                         <div className="summary-card">
-                            <h2>15</h2>
+
+                            <h2>6</h2>
+
+                            <p>Warning</p>
+
+                        </div>
+
+                        <div className="summary-card">
+
+                            <h2>6</h2>
+
                             <p>Normal</p>
-                        </div>
 
-                        <div className="summary-card">
-                            <h2>98%</h2>
-                            <p>Highest Fill Level</p>
                         </div>
 
                     </div>
 
-                    <div className="table-card">
+                    {/* MAP + DETAILS */}
 
-                        <table>
+                    <div className="monitoring-layout">
 
-                            <thead>
+                        {/* LEFT */}
 
-                                <tr>
+                        <div className="map-section">
 
-                                    <th>Ward</th>
-                                    <th>Population</th>
-                                    <th>Fill Level</th>
-                                    <th>Status</th>
-                                    <th>Priority</th>
+                            <WardMap
+                                selectedWard={selectedWard}
+                                setSelectedWard={setSelectedWard}
+                            />
 
-                                </tr>
+                        </div>
 
-                            </thead>
+                        {/* RIGHT */}
 
-                            <tbody>
+                        <div className="details-section">
 
-                                {
+                            <div className="details-card">
 
-                                    wards.map((item, index) => (
+                                <h2>{selectedWard.name}</h2>
 
-                                        <tr key={index}>
+                                <p>Live AI Monitoring</p>
 
-                                            <td>{item.ward}</td>
+                                <hr />
 
-                                            <td>{item.population}</td>
+                                <div className="detail-row">
 
-                                            <td>{item.fill}</td>
+                                    <span>Population</span>
 
-                                            <td>
+                                    <strong>
+                                        {selectedWard.population.toLocaleString()}
+                                    </strong>
 
-                                                <span
-                                                    className={
-                                                        item.status === "Normal"
-                                                            ? "badge normal"
-                                                            : "badge danger"
-                                                    }
-                                                >
-                                                    {item.status}
-                                                </span>
+                                </div>
 
-                                            </td>
+                                <div className="detail-row">
 
-                                            <td>
+                                    <span>Waste Generated</span>
 
-                                                <span className={`priority ${item.priority.toLowerCase()}`}>
-                                                    {item.priority}
-                                                </span>
+                                    <strong>{selectedWard.waste}</strong>
 
-                                            </td>
+                                </div>
 
-                                        </tr>
+                                <div className="detail-row">
 
-                                    ))
+                                    <span>Fill Level</span>
 
-                                }
+                                    <strong>{selectedWard.fill}%</strong>
 
-                            </tbody>
+                                </div>
 
-                        </table>
+                                <div className="detail-row">
+
+                                    <span>Status</span>
+
+                                    <strong
+                                        className={
+                                            selectedWard.status === "Critical"
+                                                ? "critical-text"
+                                                : selectedWard.status === "Warning"
+                                                    ? "warning-text"
+                                                    : "normal-text"
+                                        }
+                                    >
+
+                                        {selectedWard.status}
+
+                                    </strong>
+
+                                </div>
+
+                                <hr />
+
+                                <h3>🤖 AI Recommendation</h3>
+
+                                <p>
+
+                                    AI predicts this ward may overflow within
+                                    the next <b>2 hours</b>. Immediate garbage
+                                    collection is recommended.
+
+                                </p>
+
+                                <div className="recommendation-box">
+
+                                    <div>
+
+                                        🚛
+
+                                        <span>
+
+                                            Truck Assigned :
+                                            <b> T-04</b>
+
+                                        </span>
+
+                                    </div>
+
+                                    <div>
+
+                                        ⏱
+
+                                        <span>
+
+                                            ETA :
+                                            <b> 8 Minutes</b>
+
+                                        </span>
+
+                                    </div>
+
+                                    <div>
+
+                                        ⛽
+
+                                        <span>
+
+                                            Fuel Saved :
+                                            <b> 14 L</b>
+
+                                        </span>
+
+                                    </div>
+
+                                    <div>
+
+                                        💰
+
+                                        <span>
+
+                                            Cost Saved :
+                                            <b> ₹1850</b>
+
+                                        </span>
+
+                                    </div>
+
+                                    <div>
+
+                                        🌱
+
+                                        <span>
+
+                                            CO₂ Reduced :
+                                            <b> 9.2 kg</b>
+
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            {/* ROUTE */}
+
+                            <TruckRoute selectedWard={selectedWard} />
+
+                        </div>
 
                     </div>
 

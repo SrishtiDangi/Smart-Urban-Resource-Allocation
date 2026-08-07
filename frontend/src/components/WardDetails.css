@@ -1,0 +1,99 @@
+.details-card {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+
+}
+
+.details-card h2 {
+
+    margin-bottom: 5px;
+
+    color: #0f172a;
+
+}
+
+.subtitle {
+
+    color: #64748b;
+
+    margin-bottom: 30px;
+
+}
+
+.detail-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid #e2e8f0;
+
+}
+
+.detail-row span {
+
+    color: #64748b;
+
+}
+
+.detail-row strong {
+
+    color: #0f172a;
+
+}
+
+.normal {
+
+    color: #16a34a;
+
+}
+
+.overflow {
+
+    color: #f59e0b;
+
+}
+
+.critical {
+
+    color: #ef4444;
+
+}
+
+.recommendation {
+
+    margin-top: 30px;
+
+    background: #eff6ff;
+
+    padding: 20px;
+
+    border-radius: 16px;
+
+    border-left: 5px solid #2563eb;
+
+}
+
+.recommendation h3 {
+
+    margin-bottom: 12px;
+
+    color: #1e3a8a;
+
+}
+
+.recommendation p {
+
+    color: #334155;
+
+    line-height: 1.6;
+
+}

@@ -1,0 +1,134 @@
+.route-card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
+
+    margin-top: 25px;
+
+}
+
+.route-grid {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin: 35px 0;
+
+    position: relative;
+
+}
+
+.depot,
+.ward {
+
+    width: 80px;
+
+    height: 80px;
+
+    border-radius: 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: 700;
+
+}
+
+.depot {
+
+    background: #2563eb;
+
+    color: white;
+
+}
+
+.ward {
+
+    background: #ef4444;
+
+    color: white;
+
+}
+
+.road {
+
+    width: 4px;
+
+    height: 70px;
+
+    background: #cbd5e1;
+
+}
+
+.truck {
+
+    font-size: 34px;
+
+    animation: moveTruck 2s infinite alternate;
+
+}
+
+@keyframes moveTruck {
+
+    0% {
+
+        transform: translateY(-5px);
+
+    }
+
+    100% {
+
+        transform: translateY(5px);
+
+    }
+
+}
+
+.route-info {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+}
+
+.route-info div {
+
+    background: #f8fafc;
+
+    padding: 16px;
+
+    border-radius: 14px;
+
+    text-align: center;
+
+}
+
+.route-info strong {
+
+    display: block;
+
+    margin-top: 6px;
+
+    font-size: 18px;
+
+    color: #2563eb;
+
+}

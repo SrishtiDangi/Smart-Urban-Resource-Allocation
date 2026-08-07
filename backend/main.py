@@ -1,13 +1,37 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from schemas.prediction import PredictionRequest
+
 from services.model_service import predict
 from services.economics import calculate_savings
 from services.priority import get_priority
 from services.recommendation import recommend
+
+
+from database.connection import engine, Base
+
+from models.ward import Ward
+
+from routes import wards
+
+
+
 app = FastAPI(
     title="Smart Urban Resource Allocation API",
     version="1.0"
+)
+
+
+
+Base.metadata.create_all(
+    bind=engine
+)
+
+
+
+app.include_router(
+    wards.router
 )
 
 origins = [

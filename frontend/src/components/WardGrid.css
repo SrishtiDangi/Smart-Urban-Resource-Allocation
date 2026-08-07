@@ -1,0 +1,107 @@
+.ward-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+.ward-box {
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 22px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    border: 2px solid transparent;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+
+}
+
+.ward-box:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .12);
+
+}
+
+.ward-box.active {
+
+    border: 2px solid #2563eb;
+
+}
+
+.status-dot {
+
+    width: 14px;
+
+    height: 14px;
+
+    border-radius: 50%;
+
+    margin-bottom: 15px;
+
+}
+
+.green {
+
+    background: #22c55e;
+
+}
+
+.orange {
+
+    background: #f59e0b;
+
+}
+
+.red {
+
+    background: #ef4444;
+
+}
+
+.ward-box h3 {
+
+    margin-bottom: 10px;
+
+    color: #0f172a;
+
+}
+
+.ward-box p {
+
+    color: #64748b;
+
+    margin-bottom: 8px;
+
+}
+
+.ward-box small {
+
+    font-size: 14px;
+
+    color: #2563eb;
+
+    font-weight: 600;
+
+}
+
+@media(max-width:900px) {
+
+    .ward-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
