@@ -1,0 +1,98 @@
+/* ===========================
+   PAGE
+=========================== */
+
+.prediction-page {
+    min-height: 100vh;
+    background: #f4f7fb;
+}
+
+.dashboard-body {
+    display: flex;
+}
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.prediction-content {
+
+    flex: 1;
+
+    padding: 35px;
+
+    overflow-x: hidden;
+
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.prediction-header {
+
+    margin-bottom: 30px;
+
+}
+
+.prediction-header h1 {
+
+    font-size: 34px;
+
+    color: #0f172a;
+
+    margin-bottom: 10px;
+
+    font-weight: 700;
+
+}
+
+.prediction-header p {
+
+    color: #64748b;
+
+    font-size: 17px;
+
+    max-width: 850px;
+
+    line-height: 1.7;
+
+}
+
+/* ===========================
+   FORM WRAPPER
+=========================== */
+
+.prediction-content .prediction-card {
+
+    margin: 0;
+
+    max-width: none;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:1000px) {
+
+    .prediction-content {
+
+        padding: 20px;
+
+    }
+
+    .prediction-header h1 {
+
+        font-size: 28px;
+
+    }
+
+    .prediction-header p {
+
+        font-size: 15px;
+
+    }
+
+}

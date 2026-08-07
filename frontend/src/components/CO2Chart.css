@@ -1,0 +1,53 @@
+.co2-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:20px;
+
+border:1px solid #e5e7eb;
+
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+
+}
+
+.co2-header{
+
+margin-bottom:20px;
+
+}
+
+.co2-header h2{
+
+font-size:22px;
+
+margin-bottom:6px;
+
+color:#1e293b;
+
+}
+
+.co2-header p{
+
+color:#64748b;
+
+font-size:14px;
+
+}
+
+.co2-chart{
+
+height:360px;
+
+}
+
+@media(max-width:768px){
+
+.co2-chart{
+
+height:300px;
+
+}
+
+}

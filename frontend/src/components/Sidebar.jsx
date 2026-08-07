@@ -1,73 +1,101 @@
 import "./Sidebar.css";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
 
-  const menuItems = [
-    { icon: "🏠", title: "Dashboard" },
-    { icon: "🤖", title: "AI Prediction" },
-    { icon: "📊", title: "Analytics" },
-    { icon: "🚛", title: "Resource Allocation" },
-    { icon: "💰", title: "Economic Analysis" },
-    { icon: "🗺️", title: "Ward Monitoring" },
-    { icon: "📈", title: "Reports" },
-    { icon: "⚙️", title: "Settings" },
-  ];
+    const menuItems = [
 
-  return (
+        {
+            icon: "🏠",
+            title: "Dashboard",
+            path: "/"
+        },
 
-    <aside className="sidebar">
+        {
+            icon: "🤖",
+            title: "AI Prediction",
+            path: "/prediction"
+        },
 
-      <div>
+        {
+            icon: "📊",
+            title: "Analytics",
+            path: "/analytics"
+        },
 
-        <div className="sidebar-logo">
+        {
+            icon: "🚛",
+            title: "Resource Allocation",
+            path: "/resource-allocation"
+        },
 
+        {
+            icon: "💰",
+            title: "Economic Analysis",
+            path: "/economics"
+        },
 
-        </div>
+        {
+            icon: "🗺️",
+            title: "Ward Monitoring",
+            path: "/ward-monitoring"
+        },
 
-        <nav className="menu">
+        {
+            icon: "📄",
+            title: "Reports",
+            path: "/reports"
+        },
 
-          {
-            menuItems.map((item, index) => (
+        {
+            icon: "⚙️",
+            title: "Settings",
+            path: "/settings"
+        }
 
-              <div
-                key={index}
-                className={`menu-item ${index === 0 ? "active" : ""}`}
-              >
+    ];
 
-                <span className="menu-icon">
-                  {item.icon}
-                </span>
+    return (
 
-                <span className="menu-title">
-                  {item.title}
-                </span>
+        <aside className="sidebar">
 
-              </div>
+            <div className="menu">
 
-            ))
-          }
+                {menuItems.map((item) => (
 
-        </nav>
+                    <NavLink
 
-      </div>
+                        key={item.path}
 
-      <div className="sidebar-footer">
+                        to={item.path}
 
-        <div className="server-status">
+                        className={({ isActive }) =>
+                            isActive ? "menu-item active" : "menu-item"
+                        }
 
-          <span className="green-dot"></span>
+                    >
 
-          AI Server Connected
+                        <span className="menu-icon">
 
-        </div>
+                            {item.icon}
 
-        <small>Version 1.0.0</small>
+                        </span>
 
-      </div>
+                        <span>
 
-    </aside>
+                            {item.title}
 
-  );
+                        </span>
+
+                    </NavLink>
+
+                ))}
+
+            </div>
+
+        </aside>
+
+    );
 
 }
 

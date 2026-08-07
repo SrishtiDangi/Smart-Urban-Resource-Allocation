@@ -1,0 +1,53 @@
+.savings-card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+
+}
+
+.savings-header {
+
+    margin-bottom: 20px;
+
+}
+
+.savings-header h2 {
+
+    font-size: 22px;
+
+    color: #1e293b;
+
+    margin-bottom: 6px;
+
+}
+
+.savings-header p {
+
+    color: #64748b;
+
+    font-size: 14px;
+
+}
+
+.savings-chart {
+
+    height: 360px;
+
+}
+
+@media(max-width:768px) {
+
+    .savings-chart {
+
+        height: 300px;
+
+    }
+
+}

@@ -1,0 +1,53 @@
+.dashboard{
+    min-height:100vh;
+    background:#f1f5f9;
+}
+
+.dashboard-body{
+    display:flex;
+}
+
+.dashboard-content{
+    flex:1;
+    padding:30px;
+    overflow-x:hidden;
+}
+
+.page-title{
+    font-size:32px;
+    color:#0f172a;
+    margin-bottom:8px;
+}
+
+.page-subtitle{
+    color:#64748b;
+    margin-bottom:30px;
+}
+
+.charts-row{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    margin-bottom:30px;
+}
+
+.chart-card,
+.pie-card,
+.full-card{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.full-card{
+    grid-column:1/-1;
+}
+
+@media(max-width:1000px){
+
+.charts-row{
+    grid-template-columns:1fr;
+}
+
+}
