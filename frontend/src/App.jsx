@@ -1,5 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { ThemeProvider } from "./context/ThemeContext";
 
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Prediction from "./pages/Prediction";
 import Analytics from "./pages/Analytics";
@@ -9,47 +11,41 @@ import WardMonitoring from "./pages/WardMonitoring";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 
+// ─── Protected Route ───────────────────────────────────────
+function ProtectedRoute({ children }) {
+  const token = localStorage.getItem("adminToken");
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+}
+
 function App() {
   return (
-    <BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
 
-      <Routes>
+          {/* Public */}
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/" element={<Dashboard />} />
+          {/* Protected */}
+          <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/prediction" element={<ProtectedRoute><Prediction /></ProtectedRoute>} />
+          <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+          <Route path="/resource-allocation" element={<ProtectedRoute><ResourceAllocation /></ProtectedRoute>} />
+          <Route path="/economics" element={<ProtectedRoute><Economics /></ProtectedRoute>} />
+          <Route path="/ward-monitoring" element={<ProtectedRoute><WardMonitoring /></ProtectedRoute>} />
+          <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
+          <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
 
-        <Route path="/prediction" element={<Prediction />} />
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/" replace />} />
 
-        <Route path="/analytics" element={<Analytics />} />
-
-        <Route
-          path="/resource-allocation"
-          element={<ResourceAllocation />}
-        />
-
-        <Route
-          path="/economics"
-          element={<Economics />}
-        />
-
-        <Route
-          path="/ward-monitoring"
-          element={<WardMonitoring />}
-        />
-
-        <Route
-          path="/reports"
-          element={<Reports />}
-        />
-
-        <Route
-          path="/settings"
-          element={<Settings />}
-        />
-
-      </Routes>
-
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
-export default App;
+export default App;

@@ -266,6 +266,51 @@
 }
 
 /* ==========================
+   SIDEBAR BOTTOM ACTIONS
+========================== */
+
+.sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-color);
+}
+
+.sidebar-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    transition: 0.25s;
+    text-align: left;
+}
+
+.sidebar-action-btn:hover {
+    background: var(--hover-bg);
+    color: var(--primary);
+    transform: translateX(4px);
+}
+
+.logout-btn {
+    color: #ef4444;
+}
+
+.logout-btn:hover {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+/* ==========================
    RESPONSIVE
 ========================== */
 

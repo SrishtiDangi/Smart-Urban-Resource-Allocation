@@ -1,0 +1,59 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ========================
+# Virtual Environments
+# ========================
+.venv/
+venv/
+env/
+ENV/
+
+# ========================
+# Database files
+# ========================
+*.db
+*.sqlite
+*.sqlite3
+
+# ========================
+# ML Model binaries
+# ========================
+*.pkl
+*.joblib
+*.h5
+*.onnx
+
+# ========================
+# Environment variables
+# ========================
+.env
+.env.local
+.env.production
+
+# ========================
+# Frontend
+# ========================
+node_modules/
+dist/
+build/
+.cache/
+*.local
+
+# ========================
+# IDE / OS
+# ========================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

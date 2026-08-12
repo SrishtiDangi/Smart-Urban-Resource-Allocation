@@ -87,7 +87,7 @@ h4,
 h5,
 h6 {
 
-    color: #0f172a;
+    color: var(--heading-color);
 
     font-weight: 700;
 
@@ -97,7 +97,7 @@ h6 {
 
 p {
 
-    color: #64748b;
+    color: var(--text-muted);
 
     line-height: 1.6;
 
