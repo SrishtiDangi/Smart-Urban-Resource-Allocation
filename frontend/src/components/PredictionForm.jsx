@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { Brain, AlertCircle, CheckCircle2, TrendingDown, Thermometer, CloudRain, Users, Clock, Trash2, MapPin } from "lucide-react";
 import "./PredictionForm.css";
 
 function PredictionForm() {
@@ -31,14 +33,19 @@ function PredictionForm() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/predict",
+        "http://127.0.0.1:8888/predict",
         formData
       );
 
       setResult(response.data);
+      if (response.data.prediction === 1) {
+        toast.warning("Overflow Expected! High priority.");
+      } else {
+        toast.success("Prediction successful. No overflow expected.");
+      }
     } catch (error) {
       console.error(error);
-      alert("Prediction Failed! Check Backend.");
+      toast.error("Prediction Failed! Check Backend connection.");
     }
 
     setLoading(false);
@@ -47,117 +54,65 @@ function PredictionForm() {
   return (
     <div className="prediction-card">
 
-      <h2>🤖 AI Overflow Prediction</h2>
+      <h2 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Brain color="var(--primary)" /> AI Overflow Prediction
+      </h2>
+      <p>Enter ward details to predict whether the garbage bin is likely to overflow.</p>
 
-      <p>
-        Enter ward details to predict whether the garbage bin
-        is likely to overflow.
-      </p>
-
-      <form
-        onSubmit={handleSubmit}
-        className="prediction-form"
-      >
-
+      <form onSubmit={handleSubmit} className="prediction-form">
         <div className="input-group">
-          <label>Ward</label>
-
-          <select
-            name="area"
-            value={formData.area}
-            onChange={handleChange}
-          >
+          <label><MapPin size={16} /> Ward</label>
+          <select name="area" value={formData.area} onChange={handleChange}>
             {Array.from({ length: 20 }, (_, i) => (
-              <option
-                key={i}
-                value={i}
-              >
-                Ward {i + 1}
-              </option>
+              <option key={i} value={i}>Ward {i + 1}</option>
             ))}
           </select>
         </div>
 
         <div className="input-group">
-          <label>Population</label>
-
-          <input
-            type="number"
-            name="population"
-            value={formData.population}
-            onChange={handleChange}
-            required
-          />
+          <label><Users size={16} /> Population</label>
+          <input type="number" name="population" value={formData.population} onChange={handleChange} required />
         </div>
 
         <div className="input-group">
-          <label>Temperature (°C)</label>
-
-          <input
-            type="number"
-            name="temperature"
-            value={formData.temperature}
-            onChange={handleChange}
-            required
-          />
+          <label><Thermometer size={16} /> Temperature (°C)</label>
+          <input type="number" name="temperature" value={formData.temperature} onChange={handleChange} required />
         </div>
 
         <div className="input-group">
-          <label>Rainfall (mm)</label>
-
-          <input
-            type="number"
-            name="rainfall"
-            value={formData.rainfall}
-            onChange={handleChange}
-            required
-          />
+          <label><CloudRain size={16} /> Rainfall (mm)</label>
+          <input type="number" name="rainfall" value={formData.rainfall} onChange={handleChange} required />
         </div>
 
         <div className="input-group">
-          <label>Holiday</label>
-
-          <select
-            name="holiday"
-            value={formData.holiday}
-            onChange={handleChange}
-          >
+          <label><AlertCircle size={16} /> Holiday</label>
+          <select name="holiday" value={formData.holiday} onChange={handleChange}>
             <option value={0}>No</option>
             <option value={1}>Yes</option>
           </select>
         </div>
 
         <div className="input-group">
-          <label>Last Collection (Hours)</label>
-
-          <input
-            type="number"
-            name="last_collection_hours"
-            value={formData.last_collection_hours}
-            onChange={handleChange}
-            required
-          />
+          <label><Clock size={16} /> Last Collection (Hours)</label>
+          <input type="number" name="last_collection_hours" value={formData.last_collection_hours} onChange={handleChange} required />
         </div>
 
         <div className="input-group full-width">
-          <label>Waste Generated (kg)</label>
-
-          <input
-            type="number"
-            name="waste_generated_kg"
-            value={formData.waste_generated_kg}
-            onChange={handleChange}
-            required
-          />
+          <label><Trash2 size={16} /> Waste Generated (kg)</label>
+          <input type="number" name="waste_generated_kg" value={formData.waste_generated_kg} onChange={handleChange} required />
         </div>
 
-        <button
-          type="submit"
-          className="predict-btn"
-        >
-          {loading ? "Predicting..." : "🚀 Predict Overflow"}
+        <button type="submit" className="predict-btn" disabled={loading}>
+          {loading ? (
+             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+               <div className="spinner"></div> Predicting...
+             </span>
+          ) : (
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+              <Brain size={18} /> Predict Overflow
+            </span>
+          )}
         </button>
-
       </form>
 
       {result && (

@@ -1,0 +1,31 @@
+.economics-chart-container {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+.economics-chart-container .chart-header {
+    margin-bottom: 20px;
+}
+
+.economics-chart-container .chart-header h2 {
+    margin: 0 0 4px 0;
+    color: #1f2937;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.economics-chart-container .chart-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.875rem;
+}
+
+.economics-chart-container .chart-container {
+    flex: 1;
+    min-height: 0;
+}

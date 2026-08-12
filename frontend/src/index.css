@@ -14,6 +14,32 @@
    ROOT
 ========================================== */
 
+:root {
+  --bg-color: #f8fbff;
+  --bg-gradient: linear-gradient(180deg, #f8fbff 0%, #edf4ff 50%, #f4f8fd 100%);
+  --text-color: #1e293b;
+  --text-muted: #64748b;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --primary: #2563eb;
+  --heading-color: #0f172a;
+  --sidebar-bg: #ffffff;
+  --hover-bg: #f1f5f9;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --bg-gradient: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  --text-color: #f8fafc;
+  --text-muted: #94a3b8;
+  --card-bg: #1e293b;
+  --border-color: #334155;
+  --primary: #3b82f6;
+  --heading-color: #f1f5f9;
+  --sidebar-bg: #1e293b;
+  --hover-bg: #334155;
+}
+
 html,
 body,
 #root {
@@ -26,25 +52,14 @@ body,
 ========================================== */
 
 body {
-
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-
-    background: linear-gradient(
-        180deg,
-        #f8fbff 0%,
-        #edf4ff 50%,
-        #f4f8fd 100%
-    );
-
-    color: #1e293b;
-
+    background: var(--bg-gradient);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     overflow-x: hidden;
-
     line-height: 1.5;
-
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
 }
 
 /* ==========================================

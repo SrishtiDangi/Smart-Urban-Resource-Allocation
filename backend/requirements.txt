@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+scikit-learn
+pandas
+shap
+ortools
+websockets
+python-multipart
+pydantic
