@@ -169,4 +169,6 @@ docker-compose up --build
 
 ## 👩‍💻 Built by
 
-**Srishti Dangi** | [GitHub](https://github.com/SrishtiDangi)
+**Srishti Dangi** | [GitHub @SrishtiDangi](https://github.com/SrishtiDangi)
+
+**Vanshika** | [GitHub @Oneshika7](https://github.com/Oneshika7)
