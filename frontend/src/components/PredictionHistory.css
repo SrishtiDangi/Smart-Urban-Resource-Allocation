@@ -1,0 +1,149 @@
+/* ===========================
+   HISTORY CARD
+=========================== */
+
+.history-card {
+    margin-top: 32px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.07);
+    overflow: hidden;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.history-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin: 0;
+}
+
+.history-count {
+    background: var(--primary);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+/* ===========================
+   TABLE WRAPPER
+=========================== */
+
+.history-table-wrapper {
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.history-table thead {
+    background: var(--hover-bg);
+}
+
+.history-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.history-table td {
+    padding: 14px 16px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+    vertical-align: middle;
+}
+
+.history-table tbody tr {
+    transition: background 0.2s;
+}
+
+.history-table tbody tr:hover {
+    background: var(--hover-bg);
+}
+
+.row-danger {
+    border-left: 3px solid #ef4444;
+}
+
+.row-safe {
+    border-left: 3px solid #22c55e;
+}
+
+/* ===========================
+   BADGES
+=========================== */
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.badge-danger {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.badge-safe {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.priority-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.priority-high {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.priority-medium {
+    background: #fef9c3;
+    color: #ca8a04;
+}
+
+.priority-low {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.action-cell {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

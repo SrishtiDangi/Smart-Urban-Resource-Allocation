@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -43,6 +45,18 @@ function App() {
           <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>
+
+        {/* Global Toast Notifications */}
+        <ToastContainer
+          position="top-right"
+          autoClose={3500}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="colored"
+        />
       </BrowserRouter>
     </ThemeProvider>
   );

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Brain, AlertCircle, CheckCircle2, TrendingDown, Thermometer, CloudRain, Users, Clock, Trash2, MapPin } from "lucide-react";
+import PredictionHistory from "./PredictionHistory";
 import "./PredictionForm.css";
 
 function PredictionForm() {
@@ -17,6 +18,7 @@ function PredictionForm() {
 
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [history, setHistory] = useState([]);
 
   const handleChange = (e) => {
     setFormData({
@@ -37,15 +39,21 @@ function PredictionForm() {
         formData
       );
 
-      setResult(response.data);
-      if (response.data.prediction === 1) {
-        toast.warning("Overflow Expected! High priority.");
+      const data = response.data;
+      setResult(data);
+
+      // Save to history with timestamp
+      const timestamp = new Date().toLocaleTimeString();
+      setHistory(prev => [{ ...data, area: formData.area, timestamp }, ...prev]);
+
+      if (data.prediction === 1) {
+        toast.warning("⚠️ Overflow Expected! High priority action needed.");
       } else {
-        toast.success("Prediction successful. No overflow expected.");
+        toast.success("✅ Prediction successful. No overflow expected.");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Prediction Failed! Check Backend connection.");
+      toast.error("❌ Prediction Failed! Check backend connection.");
     }
 
     setLoading(false);
@@ -198,6 +206,9 @@ function PredictionForm() {
         </div>
 
       )}
+
+      {/* Prediction History */}
+      <PredictionHistory history={history} />
 
     </div>
   );
