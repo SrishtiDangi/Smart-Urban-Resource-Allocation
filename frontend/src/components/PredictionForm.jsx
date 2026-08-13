@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Brain, AlertCircle, CheckCircle2, TrendingDown, Thermometer, CloudRain, Users, Clock, Trash2, MapPin } from "lucide-react";
 import PredictionHistory from "./PredictionHistory";
+import ShapChart from "./ShapChart";
 import "./PredictionForm.css";
 
 function PredictionForm() {
@@ -205,6 +206,11 @@ function PredictionForm() {
 
         </div>
 
+      )}
+
+      {/* SHAP Explainability */}
+      {result && result.shap_explanation && (
+        <ShapChart data={result.shap_explanation} />
       )}
 
       {/* Prediction History */}

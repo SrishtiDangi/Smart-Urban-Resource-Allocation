@@ -12,6 +12,7 @@ import Economics from "./pages/Economics";
 import WardMonitoring from "./pages/WardMonitoring";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
+import HistoryPage from "./pages/HistoryPage";
 
 // ─── Protected Route ───────────────────────────────────────
 function ProtectedRoute({ children }) {
@@ -40,6 +41,7 @@ function App() {
           <Route path="/ward-monitoring" element={<ProtectedRoute><WardMonitoring /></ProtectedRoute>} />
           <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+          <Route path="/history" element={<ProtectedRoute><HistoryPage /></ProtectedRoute>} />
 
           {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />

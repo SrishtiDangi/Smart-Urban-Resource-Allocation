@@ -9,6 +9,7 @@ function Sidebar() {
     const menuItems = [
         { icon: "🏠", title: "Dashboard", path: "/" },
         { icon: "🤖", title: "AI Prediction", path: "/prediction" },
+        { icon: "📋", title: "History", path: "/history" },
         { icon: "📊", title: "Analytics", path: "/analytics" },
         { icon: "🚛", title: "Resource Allocation", path: "/resource-allocation" },
         { icon: "💰", title: "Economic Analysis", path: "/economics" },
