@@ -1,110 +1,223 @@
+import { useEffect, useState } from "react";
+import { getWardData } from "../services/api";
 import "./WardTable.css";
 
 function WardTable() {
-  const wards = [
-    {
-      ward: "Ward-1",
-      population: 8500,
-      waste: "420 kg",
-      overflow: "Yes",
-      priority: "High",
-    },
-    {
-      ward: "Ward-2",
-      population: 5200,
-      waste: "180 kg",
-      overflow: "No",
-      priority: "Low",
-    },
-    {
-      ward: "Ward-3",
-      population: 7300,
-      waste: "390 kg",
-      overflow: "Yes",
-      priority: "High",
-    },
-    {
-      ward: "Ward-4",
-      population: 4100,
-      waste: "150 kg",
-      overflow: "No",
-      priority: "Low",
-    },
-    {
-      ward: "Ward-5",
-      population: 9600,
-      waste: "470 kg",
-      overflow: "Yes",
-      priority: "Critical",
-    },
-  ];
+
+  const [wards, setWards] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+
+    async function fetchWards() {
+
+      try {
+
+        const response = await getWardData();
+
+        setWards(response.data);
+
+      } catch (err) {
+
+        console.error("Failed to fetch ward data:", err);
+
+        setError("Unable to load ward data.");
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
+    }
+
+    fetchWards();
+
+  }, []);
+
+  if (loading) {
+
+    return (
+      <div className="table-card">
+        <div className="table-loading">
+          Loading Ward Data...
+        </div>
+      </div>
+    );
+
+  }
+
+  if (error) {
+
+    return (
+      <div className="table-card">
+        <div className="table-error">
+          ⚠️ {error}
+        </div>
+      </div>
+    );
+
+  }
 
   return (
+
     <div className="table-card">
+
+      {/* HEADER */}
+
       <div className="table-header">
+
         <div>
+
           <h2>📍 Ward Monitoring Dashboard</h2>
-          <p>Live monitoring of waste generation and overflow status.</p>
+
+          <p>
+            Live monitoring of waste generation and
+            overflow status.
+          </p>
+
         </div>
 
-        <button>📥 Export Report</button>
+        <button>
+          📥 Export Report
+        </button>
+
       </div>
+
+
+      {/* TABLE */}
 
       <div className="table-wrapper">
+
         <table>
+
           <thead>
+
             <tr>
+
               <th>Ward</th>
+
               <th>Population</th>
+
               <th>Waste Generated</th>
+
               <th>Overflow</th>
+
               <th>Priority</th>
+
             </tr>
+
           </thead>
 
+
           <tbody>
-            {wards.map((item, index) => (
-              <tr key={index}>
-                <td>{item.ward}</td>
 
-                <td>{item.population.toLocaleString()}</td>
+            {wards.map((item, index) => {
 
-                <td>{item.waste}</td>
+              /*
+               * Backend currently sends:
+               *
+               * ward
+               * population
+               * waste
+               * overflow
+               *
+               * Priority is calculated here temporarily.
+               */
 
-                <td>
-                  <span
-                    className={
-                      item.overflow === "Yes"
-                        ? "badge danger"
-                        : "badge safe"
-                    }
-                  >
-                    {item.overflow === "Yes"
-                      ? "🔴 Overflow"
-                      : "🟢 Normal"}
-                  </span>
-                </td>
+              const priority =
+                item.overflow === "Yes"
+                  ? "High"
+                  : "Low";
 
-                <td>
-                  <span
-                    className={
-                      item.priority === "Critical"
-                        ? "priority critical"
-                        : item.priority === "High"
-                        ? "priority high"
-                        : "priority low"
-                    }
-                  >
-                    {item.priority}
-                  </span>
-                </td>
-              </tr>
-            ))}
+
+              return (
+
+                <tr key={item.id || index}>
+
+                  {/* WARD */}
+
+                  <td>
+                    <strong>
+                      {item.ward}
+                    </strong>
+                  </td>
+
+
+                  {/* POPULATION */}
+
+                  <td>
+                    {Number(
+                      item.population
+                    ).toLocaleString()}
+                  </td>
+
+
+                  {/* WASTE */}
+
+                  <td>
+                    {item.waste}
+                  </td>
+
+
+                  {/* OVERFLOW */}
+
+                  <td>
+
+                    <span
+                      className={
+                        item.overflow === "Yes"
+                          ? "badge danger"
+                          : "badge safe"
+                      }
+                    >
+
+                      {item.overflow === "Yes"
+                        ? "🔴 Overflow"
+                        : "🟢 Normal"}
+
+                    </span>
+
+                  </td>
+
+
+                  {/* PRIORITY */}
+
+                  <td>
+
+                    <span
+                      className={
+                        priority === "Critical"
+                          ? "priority critical"
+                          : priority === "High"
+                            ? "priority high"
+                            : "priority low"
+                      }
+                    >
+
+                      {priority}
+
+                    </span>
+
+                  </td>
+
+                </tr>
+
+              );
+
+            })}
+
           </tbody>
+
         </table>
+
       </div>
+
     </div>
+
   );
+
 }
 
 export default WardTable;

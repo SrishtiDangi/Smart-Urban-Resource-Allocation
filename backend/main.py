@@ -243,11 +243,136 @@ def overflow_summary():
     return {"overflow": 26, "normal": 124}
 
 
-@app.get("/wards")
+@app.get("/wards", tags=["Wards"])
 def get_wards():
+
     return [
-        {"ward": "Ward-1", "population": 8500, "waste": "420 kg", "overflow": "Yes"},
-        {"ward": "Ward-2", "population": 5300, "waste": "210 kg", "overflow": "No"},
-        {"ward": "Ward-3", "population": 7200, "waste": "390 kg", "overflow": "Yes"},
-        {"ward": "Ward-4", "population": 4100, "waste": "180 kg", "overflow": "No"},
+        {
+            "id": 1,
+            "name": "Ward-1",
+            "population": 8500,
+            "fill": 92,
+            "status": "critical",
+            "waste": "420 kg"
+        },
+        {
+            "id": 2,
+            "name": "Ward-2",
+            "population": 5200,
+            "fill": 38,
+            "status": "normal",
+            "waste": "180 kg"
+        },
+        {
+            "id": 3,
+            "name": "Ward-3",
+            "population": 7300,
+            "fill": 84,
+            "status": "warning",
+            "waste": "390 kg"
+        },
+        {
+            "id": 4,
+            "name": "Ward-4",
+            "population": 4100,
+            "fill": 28,
+            "status": "normal",
+            "waste": "150 kg"
+        },
+        {
+            "id": 5,
+            "name": "Ward-5",
+            "population": 9600,
+            "fill": 98,
+            "status": "critical",
+            "waste": "470 kg"
+        },
+        {
+            "id": 6,
+            "name": "Ward-6",
+            "population": 6900,
+            "fill": 72,
+            "status": "warning",
+            "waste": "340 kg"
+        },
+        {
+            "id": 7,
+            "name": "Ward-7",
+            "population": 5000,
+            "fill": 46,
+            "status": "normal",
+            "waste": "210 kg"
+        },
+        {
+            "id": 8,
+            "name": "Ward-8",
+            "population": 7600,
+            "fill": 81,
+            "status": "warning",
+            "waste": "360 kg"
+        },
+        {
+            "id": 9,
+            "name": "Ward-9",
+            "population": 6100,
+            "fill": 54,
+            "status": "normal",
+            "waste": "240 kg"
+        },
+        {
+            "id": 10,
+            "name": "Ward-10",
+            "population": 8200,
+            "fill": 95,
+            "status": "critical",
+            "waste": "440 kg"
+        },
+        {
+            "id": 11,
+            "name": "Ward-11",
+            "population": 4700,
+            "fill": 40,
+            "status": "normal",
+            "waste": "170 kg"
+        },
+        {
+            "id": 12,
+            "name": "Ward-12",
+            "population": 7800,
+            "fill": 76,
+            "status": "warning",
+            "waste": "355 kg"
+        },
+        {
+            "id": 13,
+            "name": "Ward-13",
+            "population": 8300,
+            "fill": 87,
+            "status": "warning",
+            "waste": "401 kg"
+        },
+        {
+            "id": 14,
+            "name": "Ward-14",
+            "population": 4400,
+            "fill": 25,
+            "status": "normal",
+            "waste": "120 kg"
+        },
+        {
+            "id": 15,
+            "name": "Ward-15",
+            "population": 9900,
+            "fill": 99,
+            "status": "critical",
+            "waste": "490 kg"
+        },
+        {
+            "id": 16,
+            "name": "Ward-16",
+            "population": 6700,
+            "fill": 61,
+            "status": "warning",
+            "waste": "295 kg"
+        }
     ]

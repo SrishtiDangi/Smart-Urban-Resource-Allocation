@@ -1,35 +1,76 @@
 import { useEffect, useState } from "react";
+import { getWeather } from "../services/api";
 import "./WeatherWidget.css";
 
 function WeatherWidget() {
 
     const [weather, setWeather] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
 
-        // Later backend API se replace karenge
+        const fetchWeather = async () => {
 
-        setWeather({
+            try {
 
-            city: "Delhi",
+                const response = await getWeather();
 
-            temperature: 31,
+                setWeather(response.data);
 
-            condition: "Light Rain",
+                setError(false);
 
-            humidity: 72,
+            } catch (err) {
 
-            rainfall: 8,
+                console.error("Weather API Error:", err);
 
-            wind: 14
+                setError(true);
 
-        });
+            } finally {
+
+                setLoading(false);
+
+            }
+
+        };
+
+        fetchWeather();
 
     }, []);
 
-    if (!weather) {
+    if (loading) {
 
-        return <h3>Loading Weather...</h3>;
+        return (
+
+            <div className="weather-card">
+
+                <h3>🌦 Loading Weather...</h3>
+
+            </div>
+
+        );
+
+    }
+
+    if (error || !weather) {
+
+        return (
+
+            <div className="weather-card">
+
+                <div className="weather-left">
+
+                    <h3>🌦 Live Weather</h3>
+
+                    <h2>Unable to load weather</h2>
+
+                    <p>Please make sure backend is running.</p>
+
+                </div>
+
+            </div>
+
+        );
 
     }
 
@@ -43,7 +84,7 @@ function WeatherWidget() {
 
                 <h1>{weather.temperature}°C</h1>
 
-                <p>{weather.condition}</p>
+                <p>{weather.description}</p>
 
                 <span>{weather.city}</span>
 
@@ -69,9 +110,17 @@ function WeatherWidget() {
 
                 <div className="weather-item">
 
-                    <h4>Wind</h4>
+                    <h4>Source</h4>
 
-                    <p>{weather.wind} km/h</p>
+                    <p>
+
+                        {weather.source === "live"
+
+                            ? "Live"
+
+                            : "Demo"}
+
+                    </p>
 
                 </div>
 
