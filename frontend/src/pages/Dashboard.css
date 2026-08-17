@@ -1,128 +1,323 @@
-/* ===========================
-   Dashboard
-=========================== */
+/* =========================================
+   DASHBOARD
+========================================= */
 
 .dashboard {
     min-height: 100vh;
-    background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+    background: var(--bg);
 }
 
-/* ===========================
-   Main Layout
-=========================== */
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
 
 .dashboard-body {
     display: flex;
+    width: 100%;
     align-items: flex-start;
 }
 
-/* ===========================
-   Content Area
-=========================== */
+
+/* =========================================
+   DASHBOARD CONTENT
+========================================= */
 
 .dashboard-content {
     flex: 1;
-    padding: 30px;
+    min-width: 0;
+
+    padding: 32px 40px 60px;
+
     overflow-x: hidden;
-    max-width: calc(100vw - 260px);
 }
 
-/* ===========================
-   Charts
-=========================== */
+
+/* =========================================
+   INTRO
+========================================= */
+
+.dashboard-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 40px;
+
+    padding-bottom: 40px;
+    margin-bottom: 35px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+    display: block;
+
+    margin-bottom: 14px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.dashboard-intro h1 {
+    font-size: clamp(40px, 4.5vw, 64px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    font-weight: 750;
+
+    color: var(--text);
+
+    margin-bottom: 18px;
+}
+
+.dashboard-intro h1 span {
+    color: var(--primary);
+}
+
+.dashboard-intro p {
+    max-width: 650px;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: var(--text-soft);
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.dashboard-date {
+    min-width: 190px;
+
+    padding: 18px 20px;
+
+    border-left: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.dashboard-date span {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: 800;
+
+    color: var(--text-light);
+}
+
+.dashboard-date strong {
+    font-size: 15px;
+
+    color: var(--text);
+}
+
+.dashboard-date small {
+    color: var(--success);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.dashboard-section {
+    margin-bottom: 42px;
+}
+
+.section-label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+.section-label span {
+    font-size: 11px;
+
+    font-weight: 800;
+
+    color: var(--primary);
+}
+
+.section-label p {
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.8px;
+
+    color: var(--text-light);
+}
+
+
+/* =========================================
+   CHARTS
+========================================= */
 
 .charts-row {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 25px;
-    margin: 30px 0;
-    align-items: stretch;
+
+    grid-template-columns:
+        minmax(0, 1.7fr) minmax(280px, .8fr);
+
+    gap: 20px;
+
+    width: 100%;
 }
 
 .chart-card,
 .pie-card {
-    background: rgba(255, 255, 255, .92);
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
     border-radius: 22px;
-    padding: 25px;
-    box-shadow: 0 12px 35px rgba(15, 23, 42, .08);
-    border: 1px solid #e5e7eb;
+
+    box-shadow: var(--shadow-sm);
+
+    transition: .25s ease;
 }
 
-/* Chart fills card */
+.chart-card:hover,
+.pie-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow: var(--shadow-md);
+}
 
 .chart-card {
-    min-height: 520px;
+    min-height: 380px;
+
+    padding: 26px;
 }
 
 .pie-card {
-    min-height: 520px;
+    min-height: 380px;
+
+    padding: 26px;
+
     display: flex;
+
+    flex-direction: column;
+
     justify-content: center;
-    align-items: center;
 }
 
-/* ===========================
-   Sections
-=========================== */
 
-.dashboard-content>* {
-    margin-bottom: 30px;
+/* =========================================
+   DARK MODE
+========================================= */
+
+[data-theme="dark"] .dashboard {
+    background: var(--bg);
 }
 
-.analytics-row {
-
-    display: grid;
-
-    grid-template-columns: 1fr;
-
-    gap: 25px;
-
-    margin-top: 30px;
-
+[data-theme="dark"] .dashboard-date {
+    border-color: var(--border);
 }
 
-/* ===========================
-   Responsive
-=========================== */
 
-@media (max-width:1100px) {
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+
+    .dashboard-content {
+        padding: 32px 28px 50px;
+    }
+
+    .dashboard-intro h1 {
+        font-size: 52px;
+    }
 
     .charts-row {
         grid-template-columns: 1fr;
     }
-
-    .dashboard-content {
-        max-width: 100%;
-    }
-
 }
 
-@media (max-width:900px) {
+
+@media (max-width: 900px) {
 
     .dashboard-body {
+        display: block;
+    }
+
+    .dashboard-content {
+        padding: 28px 22px 50px;
+    }
+
+    .dashboard-intro {
         flex-direction: column;
+
+        align-items: flex-start;
+
+        padding-bottom: 30px;
     }
 
-    .dashboard-content {
-        padding: 20px;
+    .dashboard-intro h1 {
+        font-size: 46px;
     }
 
+    .dashboard-date {
+        border-left: none;
+
+        border-top: 1px solid var(--border);
+
+        padding: 18px 0 0;
+
+        width: 100%;
+    }
 }
 
-@media (max-width:600px) {
+
+@media (max-width: 600px) {
 
     .dashboard-content {
-        padding: 15px;
+        padding: 24px 16px 40px;
     }
 
-}
+    .dashboard-intro h1 {
+        font-size: 38px;
 
-@media(max-width:1000px) {
-
-    .analytics-row {
-
-        grid-template-columns: 1fr;
-
+        letter-spacing: -1px;
     }
 
+    .dashboard-intro p {
+        font-size: 14px;
+    }
+
+    .dashboard-section {
+        margin-bottom: 35px;
+    }
+
+    .chart-card,
+    .pie-card {
+        min-height: 350px;
+
+        padding: 18px;
+
+        border-radius: 18px;
+    }
 }

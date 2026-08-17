@@ -1,0 +1,138 @@
+/* =========================================
+   APP LAYOUT
+========================================= */
+
+.app {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+/* =========================================
+   COMMON PAGE STRUCTURE
+========================================= */
+
+.page {
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.dashboard-body {
+    display: flex;
+    width: 100%;
+    min-height: calc(100vh - 80px);
+}
+
+.main-content,
+.dashboard-content,
+.ward-content {
+    flex: 1;
+    min-width: 0;
+    padding: 42px 48px;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-header h1 {
+    font-size: clamp(32px, 3vw, 48px);
+    letter-spacing: -1.5px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    max-width: 850px;
+    font-size: 17px;
+    color: var(--text-soft);
+}
+
+/* =========================================
+   COMMON CARD
+========================================= */
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+/* =========================================
+   HOVER
+========================================= */
+
+.card,
+.dashboard-card,
+.summary-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.card:hover,
+.dashboard-card:hover,
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* =========================================
+   COMMON BUTTON
+========================================= */
+
+.primary-btn {
+    padding: 12px 20px;
+    border-radius: 12px;
+
+    background: var(--primary);
+    color: white;
+
+    font-weight: 600;
+    border: none;
+
+    transition: 0.25s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .main-content,
+    .dashboard-content,
+    .ward-content {
+        padding: 32px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-body {
+        display: block;
+    }
+
+    .main-content,
+    .dashboard-content,
+    .ward-content {
+        padding: 24px 18px;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+    }
+
+    .page-header p {
+        font-size: 15px;
+    }
+}
