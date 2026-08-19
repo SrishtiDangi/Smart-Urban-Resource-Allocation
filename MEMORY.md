@@ -248,3 +248,53 @@ POST http://localhost:8888/register
 ---
 
 *Last updated: August 2026 — by Vanshika (@Oneshika7)*
+
+---
+
+## 🎨 Latest UI Work — August 2026
+
+### Dashboard / Navbar / Sidebar
+
+- Dashboard has a full sidebar navigation with:
+  - Dashboard
+  - AI Prediction
+  - History
+  - Analytics
+  - Resource Allocation
+  - Economic Analysis
+  - Ward Monitoring
+  - Reports
+  - Settings
+
+- Sidebar:
+  - 270px expanded width
+  - 82px collapsed width
+  - Collapse/expand toggle
+  - Scrollable menu area
+  - Admin profile section at bottom
+  - Logout was being moved away from the sidebar toward the navbar profile dropdown
+  - Sidebar supports dark mode through CSS variables
+
+- Navbar:
+  - Smart Urban Resource Allocation Platform title
+  - AI-powered subtitle
+  - City/building logo
+  - Dark/light mode toggle
+  - System Online status
+  - Admin profile with dropdown arrow
+  - Profile dropdown intended to contain Profile and Logout
+
+- Admin identity currently displayed as:
+  - City Administrator
+  - Municipal Dashboard
+  - Avatar initials: CD
+
+### Theme System
+
+- `ThemeContext.jsx` controls light/dark mode.
+- Theme is stored in `localStorage`.
+- Theme is applied using:
+  ```js
+  document.documentElement.setAttribute("data-theme", theme);
+
+  *Latest UI work documented: August 2026*
